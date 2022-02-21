@@ -90,18 +90,18 @@ if (editToggle != null && submitForm != null) {
     for (let i = 0; i < editToggle.length; i++) {
         editToggle[i].addEventListener("click", function () {
             for (let key of editToggle) {
-                key.classList.remove("d-none")
+                key.classList.remove("d-none");
             }
             for (let key of submitForm) {
-                key.classList.add("d-none")
+                key.classList.add("d-none");
             }
             this.classList.add("d-none");
             submitForm[i].classList.remove("d-none");
             for (let key of categoryName) {
-                key.classList.remove("d-none")
+                key.classList.remove("d-none");
             }
             for (let key of categoryNameEdit) {
-                key.classList.add("d-none")
+                key.classList.add("d-none");
             }
             categoryName[i].classList.add("d-none");
             categoryNameEdit[i].classList.remove("d-none");
