@@ -45,7 +45,7 @@
                                                     class="name {{ old('formType') == 'edit' && old('oldName') == $tag->name ? 'd-none' : '' }}">
                                                     {{ $tag->name }}</div>
                                                 <div
-                                                    class="name-input {{ old('formType') == 'edit' && old('oldName') == $tag->name ? 'd-block' : 'd-none' }}">
+                                                    class="name-input {{ old('formType') == 'edit' && old('oldName') == $tag->name ? '' : 'd-none' }}">
                                                     <form class="d-inline-block edit-form"
                                                         action="{{ route('tags.update', $tag) }}" method="POST">
                                                         @csrf
@@ -53,8 +53,8 @@
                                                         <input
                                                             value="{{ old('oldName') == $tag->name ? old('name') : $tag->name }}"
                                                             type="text"
-                                                            class="form-control @if (old('formType') == 'edit' && old('oldName') == $tag->name) is-invalid @endif"
-                                                            id="name" placeholder="Insert the name" name="name">
+                                                            class="form-control @if (old('formType') == 'edit' && old('oldName') == $tag->name) is-invalid my_validation @endif"
+                                                            id="name" placeholder="Insert the name" name="name" data-old-name="{{$tag->name}}">
                                                         <input type="hidden" name="formType" value="edit">
                                                         <input type="hidden" name="oldName" value="{{ $tag->name }}">
                                                         @if (old('formType') == 'edit' && old('oldName') == $tag->name)
@@ -74,9 +74,9 @@
                                                         href="{{ route('tags.show', $tag->id) }}">View</a></button>
                                                 <div class="edit-buttons d-inline-block">
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white toggleForm">Edit</button>
+                                                        class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $tag->name ? 'd-none' : ''}}">Edit</button>
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white d-none submitForm">Confirm</button>
+                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $tag->name ? 'failed-validation' : 'd-none' }} ">Confirm</button>
                                                 </div>
                                                 <button type="submit" class="btn btn-danger btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"

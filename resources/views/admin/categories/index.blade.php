@@ -45,7 +45,7 @@
                                                     class="name {{ old('formType') == 'edit' && old('oldName') == $category->name ? 'd-none' : '' }}">
                                                     {{ $category->name }}</div>
                                                 <div
-                                                    class="name-input {{ old('formType') == 'edit' && old('oldName') == $category->name ? 'd-block' : 'd-none' }}">
+                                                    class="name-input {{ old('formType') == 'edit' && old('oldName') == $category->name ? '' : 'd-none' }}">
                                                     <form class="d-inline-block edit-form"
                                                         action="{{ route('categories.update', $category) }}"
                                                         method="POST">
@@ -54,8 +54,8 @@
                                                         <input
                                                             value="{{ old('oldName') == $category->name ? old('name') : $category->name }}"
                                                             type="text"
-                                                            class="form-control @if (old('formType') == 'edit' && old('oldName') == $category->name) is-invalid @endif"
-                                                            id="name" placeholder="Insert the name" name="name">
+                                                            class="form-control @if (old('formType') == 'edit' && old('oldName') == $category->name) is-invalid my_validation @endif"
+                                                            id="name" placeholder="Insert the name" name="name" data-old-name="{{$category->name}}">
                                                         <input type="hidden" name="formType" value="edit">
                                                         <input type="hidden" name="oldName" value="{{ $category->name }}">
                                                         @if (old('formType') == 'edit' && old('oldName') == $category->name)
@@ -77,7 +77,7 @@
                                                     <button type="button"
                                                         class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $category->name ? 'd-none' : '' }}">Edit</button>
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'd-block' : 'd-none' }} ">Confirm</button>
+                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'failed-validation' : 'd-none' }} ">Confirm</button>
                                                 </div>
                                                 <button type="submit" class="btn btn-danger btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"

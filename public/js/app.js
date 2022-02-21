@@ -37363,6 +37363,21 @@ var editForm = document.getElementsByClassName("edit-form");
 if (editToggle != null && submitForm != null) {
   var _loop2 = function _loop2(_i) {
     editToggle[_i].addEventListener("click", function () {
+      var invalidInput = document.querySelector('.my_validation');
+
+      if (invalidInput != undefined) {
+        var alertDanger = document.querySelector('.alert-danger');
+        var invalidSubmit = document.querySelector('.failed-validation.submitForm');
+        var invalidName = document.querySelector('div.name-input');
+        var oldName = invalidInput.getAttribute('data-old-name');
+        invalidInput.setAttribute('value', oldName);
+        invalidInput.classList.remove('is-invalid');
+        invalidName.classList.add('d-none');
+        alertDanger.classList.remove('d-flex');
+        alertDanger.classList.add('d-none');
+        invalidSubmit.classList.add('d-none');
+      }
+
       var _iterator = _createForOfIteratorHelper(editToggle),
           _step;
 
@@ -37439,14 +37454,6 @@ if (editToggle != null && submitForm != null) {
   var _loop3 = function _loop3(_i2) {
     submitForm[_i2].addEventListener("click", function () {
       editForm[_i2].submit();
-
-      this.classList.add("d-none");
-
-      editToggle[_i2].classList.remove("d-none");
-
-      categoryName[_i2].classList.remove("d-none");
-
-      categoryNameEdit[_i2].classList.add("d-none");
     });
   };
 
