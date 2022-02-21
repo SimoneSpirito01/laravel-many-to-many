@@ -37268,6 +37268,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(document).ready(function () {
@@ -37288,6 +37294,7 @@ window.previewUpload = function (event) {
 var buttonsToggle = document.getElementsByClassName("btnToggle");
 var buttonDelete = document.querySelector(".my_button");
 var buttonDeleteCategory = document.querySelector(".delete-category");
+var buttonDeleteTag = document.querySelector(".delete-tag");
 var posts = document.getElementsByClassName("my_item");
 var postSlug;
 var counter;
@@ -37333,6 +37340,20 @@ if (buttonDeleteCategory != null) {
   });
 }
 
+if (buttonDeleteTag != null) {
+  buttonDeleteTag.addEventListener("click", function () {
+    console.log(postSlug);
+    axios({
+      method: "delete",
+      url: "tags/".concat(postSlug)
+    }).then(function (response) {
+      posts[counter].classList.add("d-none");
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  });
+}
+
 var editToggle = document.getElementsByClassName("toggleForm");
 var submitForm = document.getElementsByClassName("submitForm");
 var categoryName = document.getElementsByClassName("name");
@@ -37342,9 +37363,68 @@ var editForm = document.getElementsByClassName("edit-form");
 if (editToggle != null && submitForm != null) {
   var _loop2 = function _loop2(_i) {
     editToggle[_i].addEventListener("click", function () {
+      var _iterator = _createForOfIteratorHelper(editToggle),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var key = _step.value;
+          key.classList.remove("d-none");
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var _iterator2 = _createForOfIteratorHelper(submitForm),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _key = _step2.value;
+
+          _key.classList.add("d-none");
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
       this.classList.add("d-none");
 
       submitForm[_i].classList.remove("d-none");
+
+      var _iterator3 = _createForOfIteratorHelper(categoryName),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _key2 = _step3.value;
+
+          _key2.classList.remove("d-none");
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      var _iterator4 = _createForOfIteratorHelper(categoryNameEdit),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var _key3 = _step4.value;
+
+          _key3.classList.add("d-none");
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
 
       categoryName[_i].classList.add("d-none");
 
@@ -37440,8 +37520,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/laravel-one-to-many/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/laravel-one-to-many/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/laravel-many-to-many/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/laravel-many-to-many/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

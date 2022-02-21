@@ -7,16 +7,16 @@
             <div class="col-10">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-uppercase mb-0">{{ $category->name }}</h2>
+                        <h2 class="text-uppercase mb-0">{{ $tag->name }}</h2>
                     </div>
                     <div class="card-body">
                         <div class="post">
-                            <p class="mb-4"><strong>Slug: </strong>{{ $category->slug }}</p>
-                            @if (count($category->posts) > 0)
+                            <p class="mb-4"><strong>Slug: </strong>{{ $tag->slug }}</p>
+                            @if (count($tag->posts) > 0)
                                 <div class="posts">
                                     <h6 class="my-4">Post list:</h6>
                                     <ul>
-                                        @foreach ($category->posts as $post)
+                                        @foreach ($tag->posts as $post)
                                             <li>{{ $post->title }}</li>
                                         @endforeach
                                     </ul>
@@ -27,7 +27,7 @@
                             <button type="button" class="btn btn-danger btnP" data-toggle="modal"
                                 data-target="#exampleModal">Delete</button>
                             <button type="button" class="btn btn-primary"><a class="text-white"
-                                    href="{{ route('categories.index') }}">Back to the list</a></button>
+                                    href="{{ route('tags.index') }}">Back to the list</a></button>
                         </div>
                         {{-- Modal --}}
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -42,12 +42,12 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete this category?
+                                        Are you sure you want to delete this tag?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary btnP"
                                             data-dismiss="modal">Close</button>
-                                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                        <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger toastClicker btnP">Delete</button>

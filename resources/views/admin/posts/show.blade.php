@@ -28,11 +28,11 @@
                             @endif
                         </div>
                         <div class="buttons mt-4">
-                            <button type="button" class="btn btn-warning mr-2"><a class="text-white"
+                            <button type="button" class="btn btn-warning"><a class="text-white"
                                     href="{{ route('posts.edit', $post->slug) }}">Edit</a></button>
                             <button type="button" class="btn btn-danger btnP" data-toggle="modal"
                                 data-target="#exampleModal">Delete</button>
-                            <button type="button" class="btn btn-primary ml-1"><a class="text-white"
+                            <button type="button" class="btn btn-primary"><a class="text-white"
                                     href="{{ route('posts.index') }}">Back to the list</a></button>
                             {{-- Modal --}}
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

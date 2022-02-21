@@ -108,7 +108,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        if(URL::previous() == 'http://127.0.0.1:8000/admin/posts/'.$category->id) {
+        if(URL::previous() == 'http://127.0.0.1:8000/admin/categories/'.$category->id) {
             return redirect()->route('categories.index');
         } 
     }
